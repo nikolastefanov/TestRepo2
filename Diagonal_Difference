@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _01_Diagonal_Difference
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int input = int.Parse(Console.ReadLine());
+
+            int rows = input;
+            int cols = input;
+
+            int[,] matrix = new int[rows, cols];
+
+            for (int row = 0; row < rows; row++)
+            {
+                int[] currentRow = Console.ReadLine()
+                    .Split()
+                    .Select(int.Parse)
+                    .ToArray();
+
+                for (int col = 0; col < cols; col++)
+                {
+                    matrix[row, col] = currentRow[col];
+                }
+            }
+
+            int sumP = 0;
+            int sumS = 0;
+
+            for (int row = 0; row < rows; row++)
+            {
+                sumP += matrix[row, row];
+            }
+
+            for (int row = 0; row < rows; row++)
+            {
+                sumS += matrix[row,cols-row-1];
+            }
+
+            Console.WriteLine(Math.Abs(sumP-sumS));
+
+        }
+    }
+}
